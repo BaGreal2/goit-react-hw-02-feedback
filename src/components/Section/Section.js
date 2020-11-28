@@ -1,34 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Statistics from '../Statistics/Statistics';
-import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
 
 function Section(props) {
-  const { good, bad, neutral, handleGood, handleBad, handleNeutral } = props;
+  const { title, children } = props;
   return (
     <>
-      <FeedbackOptions
-        handleGood={handleGood}
-        handleBad={handleBad}
-        handleNeutral={handleNeutral}
-      />
-
-      {bad > 0 || good > 0 || neutral > 0 ? (
-        <Statistics good={good} bad={bad} neutral={neutral} />
-      ) : (
-        <p>No feedback</p>
-      )}
+      <h2>{title}</h2>
+      {children}
     </>
   );
 }
 
 Section.propTypes = {
-  good: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  handleGood: PropTypes.func.isRequired,
-  handleBad: PropTypes.func.isRequired,
-  handleNeutral: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Section;
